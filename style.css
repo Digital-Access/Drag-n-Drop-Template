@@ -1,0 +1,81 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+* {
+    font-family: gothamLigh, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: ease 0.2s;
+}
+
+@font-face {
+    font-family: gothamMed;
+    src: url(https://a.storyblok.com/f/112136/x/5e402b0b67/gotham-medium.otf);
+}
+
+@font-face {
+    font-family: gothamLight;
+    src: url(https://a.storyblok.com/f/112136/x/1e7232d46e/gotham-book.otf);
+}
+
+@font-face {
+    font-family: gothamBold;
+    src: url(https://a.storyblok.com/f/112136/x/361f778928/gotham-bold.otf);
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    background-color: #172B49;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.instructionContainer {
+    background-color: #172B49;
+    padding: 1rem;
+    margin-top: 1rem;
+    color: white;
+}
+
+.question{
+    color: white;
+}
+
+.draggable {
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid #172B49;
+    cursor: move;
+    color: #172B49;
+}
+
+.draggable.dragging {
+    opacity: .5;
+}
+
+.instructions{
+    color: white;
+}
+
+.checkAnswer{
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid #172B49;
+    cursor: pointer;
+    color: #172B49;
+    text-align: center;
+    font-family:gothamMed, sans-serif;
+}
+
+.correct{
+    background-color: #008339 !important;
+    color: white;
+}
+

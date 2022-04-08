@@ -65,6 +65,7 @@ checkAnswer.addEventListener('click', () => {
         checkAnswer.classList.add('correct')
     } else {
         checkAnswer.textContent = "❌Sorry, not yet"
+        checkAnswer.classList.remove('correct')
         setTimeout(() => {
             checkAnswer.textContent = "Check Again"
         }, 2000);

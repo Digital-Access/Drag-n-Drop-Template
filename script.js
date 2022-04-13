@@ -1,15 +1,43 @@
-const draggables = document.querySelectorAll('.draggable')
-const containers = document.querySelectorAll('.container')
-const checkAnswer = document.getElementById('checkAnswer')
+const config = {
+    instructions: "Do you remember the 5 steps in the Marketing Planning Cycle?",
+    question: "Click and drag the 5 steps below into the correct order.",
+    options: [
+        "Build",
+        "Measure",
+        "Optimise",
+        "Plan",
+        "Execute"
+    ],
+    answers: [
+        "Plan",
+        "Build",
+        "Execute",
+        "Measure",
+        "Optimise"
+    ]
+}
+
+const instructions = document.getElementById('instructions')
+const question = document.getElementById('question')
+
+instructions.textContent = config.instructions
+question.textContent =config.question
+
 const container = document.getElementById('container')
 
+let i = 0;
+config.options.forEach(element => {
+    const newSortable = document.createElement("p");
+    newSortable.className = 'draggable';
+    newSortable.draggable = 'true';
+    newSortable.textContent = config.options[i];
+    container.appendChild(newSortable);
+    i++;
+});
 
-const sortOptions = {
-    option1: "Mount Everest",
-    option2: "K2",
-    option3: "Kangchenjunga",
-    option4: "Lhotse"
-}
+const containers = document.querySelectorAll('.container')
+const draggables = document.querySelectorAll('.draggable')
+const checkAnswer = document.getElementById('checkAnswer')
 
 draggables.forEach(draggable => {
     draggable.addEventListener('dragstart', () => {
@@ -55,20 +83,37 @@ function getDragAfterElement(container, y) {
 
 checkAnswer.textContent = 'Check Answer'
 
-checkAnswer.addEventListener('click', () => {
-    if (container.children[0].textContent === sortOptions.option1 &&
-        container.children[1].textContent === sortOptions.option2 &&
-        container.children[2].textContent === sortOptions.option3 &&
-        container.children[3].textContent === sortOptions.option4
-    ) {
-        checkAnswer.textContent = "Well Done! That's correct!"
-        checkAnswer.classList.add('correct')
-    } else {
-        checkAnswer.textContent = "❌Sorry, not yet"
-        checkAnswer.classList.remove('correct')
-        setTimeout(() => {
-            checkAnswer.textContent = "Check Again"
-        }, 2000);
-    }  
+const checkAnswers = () => {
+    const containerChildren = Array.from(container.children)
+    const answerOrder = [...config.answers]
+    const arrangedOrder = []
 
-})
+    containerChildren.forEach(element => {
+        arrangedOrder.push(element.textContent)
+    });
+
+
+    let j = 0;
+    arrangedOrder.forEach(element => {
+        if (arrangedOrder[j] === answerOrder[j]) {
+            checkAnswer.textContent = "Well Done! That's correct!"
+            checkAnswer.classList.add('correct')
+        } else {
+            checkAnswer.textContent = "❌Sorry, not yet"
+            checkAnswer.classList.remove('correct')
+            setTimeout(() => {
+                checkAnswer.textContent = "Check Again"
+            }, 1000);
+        }
+        j++;
+    });
+
+
+
+
+}
+
+checkAnswer.addEventListener('click', checkAnswers)
+
+const celebrationWindow = document.createElement('img')
+

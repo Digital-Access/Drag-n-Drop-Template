@@ -14,14 +14,15 @@ const config = {
         "Execute",
         "Measure",
         "Optimise"
-    ]
+    ],
+    correct_text: "Well Done! That's correct!"
 }
 
 const instructions = document.getElementById('instructions')
 const question = document.getElementById('question')
 
 instructions.textContent = config.instructions
-question.textContent =config.question
+question.textContent = config.question
 
 const container = document.getElementById('container')
 
@@ -83,37 +84,32 @@ function getDragAfterElement(container, y) {
 
 checkAnswer.textContent = 'Check Answer'
 
+
+
 const checkAnswers = () => {
+
     const containerChildren = Array.from(container.children)
-    const answerOrder = [...config.answers]
+    const answerOrder = JSON.stringify(config.answers)
     const arrangedOrder = []
 
     containerChildren.forEach(element => {
         arrangedOrder.push(element.textContent)
     });
 
+    const checkArrangedOrder = JSON.stringify(arrangedOrder)
 
-    let j = 0;
-    arrangedOrder.forEach(element => {
-        if (arrangedOrder[j] === answerOrder[j]) {
-            checkAnswer.textContent = "Well Done! That's correct!"
-            checkAnswer.classList.add('correct')
-        } else {
-            checkAnswer.textContent = "❌Sorry, not yet"
-            checkAnswer.classList.remove('correct')
-            setTimeout(() => {
-                checkAnswer.textContent = "Check Again"
-            }, 1000);
-        }
-        j++;
-    });
-
-
-
-
+    if (answerOrder === checkArrangedOrder) {
+        checkAnswer.textContent = "Well Done! That's correct!"
+        checkAnswer.classList.add('correct')
+    } else {
+        checkAnswer.textContent = "❌Sorry, not yet"
+        checkAnswer.classList.remove('correct')
+        setTimeout(() => {
+            checkAnswer.textContent = "Check Again"
+        }, 1000);
+    }
 }
 
 checkAnswer.addEventListener('click', checkAnswers)
 
 const celebrationWindow = document.createElement('img')
-

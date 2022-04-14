@@ -105,6 +105,7 @@ body {
     color: #172B49;
     text-align: center;
     font-family:gothamMed, sans-serif;
+    width: 100%;
 }
 
 .correct{
@@ -112,3 +113,12 @@ body {
     color: white;
 }
 
+
+
+@media (max-width: 420px) {
+
+    .image{
+        display: none!important;
+    }
+  
+}
